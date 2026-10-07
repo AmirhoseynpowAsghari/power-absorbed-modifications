@@ -1,0 +1,106 @@
+==============================================================================================================
+parameters: U = 95.0, dt = 4.5, n = 1.885, V_SO = 0.4082, hbar*omega = 0.7   (t = hbar = k_B = 1);  Tc = 0.3736;  band half-width W = 4.1633
+==============================================================================================================
+
+POINT 1  --  integration variable and limits
+--------------------------------------------------------------------------------------------------------------
+code (qp_absorption.absorption):
+  qp_absorption.py:128  eb, wb = dos.eps_i, dos.w_i
+  qp_absorption.py:134  Ea = Eb + omega
+  qp_absorption.py:138  ell_a = np.sqrt(Ea ** 2 - P["Emin"] ** 2)                       # > 0 because Ea >= Emin + omega
+  qp_absorption.py:139  jac = Ea / (P["s"] * ell_a)
+  qp_absorption.py:141  ea = P["estar"] + sgn * ell_a / P["s"]
+  qp_absorption.py:145  S_sc += np.sum(wb * dos.N(ea) * jac * C * (fb - fa))
+  qp_absorption.py:149  sel = Eb < 0.5 * omega
+  qp_absorption.py:152  Eas = omega - Ebs
+  qp_absorption.py:157  ea = P["estar"] + sgn * ell / P["s"]
+  qp_absorption.py:160  S_pair += np.sum(wbs * dos.N(ea) * jac * Cp * occ)
+
+  state b: sum over the band-energy grid dos.eps_i : 4000 points from eps = -4.1623 to +4.1623  (spacing 0.00208),  w_i = N(eps_i) d_eps
+  state a: NOT integrated; the delta function fixes E_a (= E_b + omega, or omega - E_b) and the two roots eps_a^+- carry the Jacobian
+
+  [T/Tc = 0.70  (below the pair-breaking onset)]   Emin = 0.5780, Emax = max(E(-W), E(+W)) = 7.8872, eps* = 3.5080
+     scattering: eps_b over the whole band [-W, W]  <=>  E_b in [Emin, Emax] = [0.5780, 7.8872];  E_a = E_b + omega;  a-roots outside the band are dropped by N(eps)=0
+     pair creation: no grid point has E_b < omega/2 = 0.350 (since Emin = 0.5780 >= omega/2): the term is exactly 0
+     eta=+1:  S_sc   eps-variable 1.938707e-03   E-variable 1.938354e-03   rel.diff 1.8e-04
+             S_pair eps-variable 0.000000e+00   E-variable 0.000000e+00   rel.diff 0.0e+00   ->  W/W_N = 0.12905 vs 0.12903
+     eta=-1:  S_sc   eps-variable 2.534765e-03   E-variable 2.534120e-03   rel.diff 2.5e-04
+             S_pair eps-variable 0.000000e+00   E-variable 0.000000e+00   rel.diff 0.0e+00   ->  W/W_N = 0.16872 vs 0.16868
+
+  [T/Tc = 0.96  (pair channel open)]   Emin = 0.2435, Emax = max(E(-W), E(+W)) = 7.8298, eps* = 3.6295
+     scattering: eps_b over the whole band [-W, W]  <=>  E_b in [Emin, Emax] = [0.2435, 7.8298];  E_a = E_b + omega;  a-roots outside the band are dropped by N(eps)=0
+     pair creation: only grid points with E_b < omega/2:  E_b in [Emin, omega/2) = [0.2435, 0.3500)  <=>  eps_b in (3.3791, 3.8799),  241 grid points;  E_a = omega - E_b
+     eta=+1:  S_sc   eps-variable 5.738184e-03   E-variable 5.737753e-03   rel.diff 7.5e-05
+             S_pair eps-variable 1.095710e-02   E-variable 1.093517e-02   rel.diff 2.0e-03   ->  W/W_N = 1.19537 vs 1.19377
+     eta=-1:  S_sc   eps-variable 6.552161e-03   E-variable 6.551250e-03   rel.diff 1.4e-04
+             S_pair eps-variable 3.612468e-03   E-variable 3.604670e-03   rel.diff 2.2e-03   ->  W/W_N = 0.72778 vs 0.72716
+
+
+POINT 2  --  momentum transfer q
+--------------------------------------------------------------------------------------------------------------
+  signature absorption  : (dos, T, omega, D0, Ds, mu, muN, eta=1, t=1.0, diag=False)
+  signature absorption_E: (dos, T, omega, D0, Ds, mu, muN, eta=1, t=1.0, n=40001)
+  occurrences of a variable named q / qa / q_... in qp_absorption.py (code and comments): 0
+  code lines containing omega (it enters only through the energy-conservation condition and through the shift in W_N):
+      qp_absorption.py:124  def absorption(dos, T, omega, D0, Ds, mu, muN, eta=+1, t=1.0, diag=False):
+      qp_absorption.py:134  Ea = Eb + omega
+      qp_absorption.py:149  sel = Eb < 0.5 * omega
+      qp_absorption.py:152  Eas = omega - Ebs
+      qp_absorption.py:163  S_N = np.sum(wb * dos.N(eb + omega) * (fermi_normal(eb, T, muN) - fermi_normal(eb + omega, T, muN)))
+      qp_absorption.py:170  def absorption_E(dos, T, omega, D0, Ds, mu, muN, eta=+1, t=1.0, n=40001):
+      qp_absorption.py:200  Ea, tot = E + omega, 0.0
+      qp_absorption.py:212  Ea, tot = omega - E, 0.0
+      qp_absorption.py:224  S_pair = trapz_E(0.5 * omega, pair) if 0.5 * omega > Em else 0.0
+      qp_absorption.py:225  S_N = np.sum(dos.w_i * dos.N(dos.eps_i + omega) * (fermi_normal(dos.eps_i, T, muN) - fermi_normal(dos.eps_i + 
+  numerical modules that contain a q, qa or the number 43 anywhere: none  (qa ~ 43 appears only in explanatory text: make_report.py -> REVIEW_AND_FIX.md, section C2)
+
+  all-pairs sum (T/Tc = 0.7, scattering term, 4608 states): share of the absorbed weight carried by momentum transfers |k - k'| a
+     10 % of the weight at |q|a < 0.67,  50 % at < 1.85,  90 % at < 2.91   (zone corner: |q|a = 4.44);  weight with |q|a < 0.1: 0.000
+
+
+POINT 3  --  the gap
+--------------------------------------------------------------------------------------------------------------
+code (qp_absorption.absorption): the gap enters only through these lines
+  qp_absorption.py:130  Dbb = D0 - Ds * eb / (4.0 * t)
+  qp_absorption.py:142  xia, Dba = ea - mu, D0 - Ds * ea / (4.0 * t)
+  qp_absorption.py:158  xia, Dba = ea - mu, D0 - Ds * ea / (4.0 * t)
+  qp_absorption.py:206  xia, Dba = ea - mu, D0 - Ds * ea / (4.0 * t)
+  qp_absorption.py:218  xia, Dba = ea - mu, D0 - Ds * ea / (4.0 * t)
+  code (qp_absorption.sc_state_vs_T): the state comes from the self-consistent solver
+  qp_absorption.py:235  out = model.solve_low_T(Tlow)
+  qp_absorption.py:246  xn, ok, res = model.solve_at(T, cur)
+  qp_absorption.py:257  muN = np.array([model.mu_normal(T) for T in Ts])
+  qp_absorption.sc_state_vs_T  ->  solve_gap.Model.solve_at(T, x0): root of the three self-consistency equations (HHM Eqs. 32, 33, 38):
+    91  def residual(self, x, T):
+    92  D0, Ds, mu = x
+    93  eps = self.eps
+    94  Db = D0 - Ds * eps / (4 * t)
+    95  xi = eps - mu
+    96  E = np.sqrt(xi ** 2 + Db ** 2)
+    97  K = np.tanh(E / (2 * T)) / (2 * E)
+    98  KD = K * Db
+    99  r0 = D0 + 0.5 * (self.U * self.avg(KD) - 2 * self.dt / t * self.avg(eps * KD))
+   100  r1 = Ds + 4 * self.dt * self.avg(KD)
+   101  r2 = self.n - (1 - 0.5 * self.avg(xi / E * np.tanh(E / (2 * T))))
+   102  return np.array([r0, r1, r2])
+
+  (a) D0(T), Ds(T), mu(T) used above are self-consistent:
+     T = 0.0100 (T/Tc = 0.03):  D0 = +0.28287  Ds = +1.09775  mu = 3.62876   max|residual of the 3 equations| = 2.2e-16
+     T = 0.1121 (T/Tc = 0.30):  D0 = +0.28208  Ds = +1.09490  mu = 3.62883   max|residual of the 3 equations| = 2.2e-16
+     T = 0.2615 (T/Tc = 0.70):  D0 = +0.23154  Ds = +0.90678  mu = 3.63583   max|residual of the 3 equations| = 1.1e-16
+     T = 0.3587 (T/Tc = 0.96):  D0 = +0.09299  Ds = +0.36966  mu = 3.65190   max|residual of the 3 equations| = 1.7e-16
+     not a rigid scaling:  D0(T)/D0(Tlow) = [0.9972, 0.8185, 0.3287]   Ds(T)/Ds(Tlow) = [0.9974, 0.826, 0.3367]
+
+  (b) the gap used inside absorption() is Dbar(eps) at the band energies of the two roots; check against the closed forms Delta_pm(E) = Delta* -+ b ell/sqrt(1+b^2):
+     [T/Tc = 0.70  (below the pair-breaking onset)] max|Dbar(eps_pm(E_a)) - Delta_pm(E_a)| = 4.4e-16;  max|sqrt(xi^2 + Dbar^2) - E_a| = 1.8e-15   (over 4000 states, both branches)
+        example (E_a = 4.342):  Delta_+ = -1.5152 at eps_+ = 7.705   Delta_- = +0.3877 at eps_- = -0.689
+     [T/Tc = 0.96  (pair channel open)] max|Dbar(eps_pm(E_a)) - Delta_pm(E_a)| = 3.3e-16;  max|sqrt(xi^2 + Dbar^2) - E_a| = 1.8e-15   (over 4000 states, both branches)
+        example (E_a = 4.352):  Delta_+ = -0.6423 at eps_+ = 7.956   Delta_- = +0.1574 at eps_- = -0.697
+
+  (c) T/Tc = 0.3: Dbar(eps) over the band runs from -0.857 to +1.421 (node at eps_0 = 1.031);  <|Dbar|> = 0.535 is NOT used anywhere in the code
+      same code, full gap Dbar(eps):      Emin = 0.6860,  W/W_N = 1.73074e-03
+      same code, constant gap <|Dbar|>:   Emin = 0.5346,  W/W_N = 3.51651e-03   (what a Delta_eff calculation of the SAME formula would give; ratio 2.03)
+
+  (c) T/Tc = 0.7: Dbar(eps) over the band runs from -0.712 to +1.175 (node at eps_0 = 1.021);  <|Dbar|> = 0.442 is NOT used anywhere in the code
+      same code, full gap Dbar(eps):      Emin = 0.5780,  W/W_N = 1.29049e-01
+      same code, constant gap <|Dbar|>:   Emin = 0.4420,  W/W_N = 1.33925e-01   (what a Delta_eff calculation of the SAME formula would give; ratio 1.04)

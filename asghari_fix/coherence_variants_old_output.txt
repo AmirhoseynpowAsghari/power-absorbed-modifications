@@ -1,0 +1,19 @@
+  [sc_loader] SC params loaded from JSON: /home/user/asghari_master/project/ultrasonic/../sc_params/results/tc_vs_vso.json
+             50 V_SO points found.
+V_SO = 0.4082, eta = +1, hbar*omega = 0.7, Tc = 0.3808, Delta_eff(0) = 0.5489   (repo framework: band-energy grid, normal-state f)
+
+columns: W(variant) / W(Delta=0 of the SAME variant)   [and in brackets: / W_N of the paper (bracket = 2 for every pair)]
+ T/Tc   Delta | repo / paper:  |xi||xi'|, +eta |        signed xi xi', +eta D^2 |            |xi||xi'|, -eta D^2 | signed xi xi', -eta D^2   (cor | repo ratio
+ 0.10  0.5488 |               0.9555 [ 0.9555] |              16.0097 [ 0.7361] |               0.2671 [ 0.2671] |               1.0375 [ 0.0477] | 0.95551
+ 0.30  0.5440 |               0.9485 [ 0.9485] |               4.9586 [ 0.7473] |               0.2824 [ 0.2824] |               0.5384 [ 0.0811] | 0.94854
+ 0.50  0.5202 |               0.9406 [ 0.9406] |               2.8009 [ 0.7571] |               0.3269 [ 0.3269] |               0.5306 [ 0.1434] | 0.94058
+ 0.70  0.4528 |               0.9343 [ 0.9343] |               2.0527 [ 0.7475] |               0.4193 [ 0.4193] |               0.6383 [ 0.2324] | 0.93435
+ 0.80  0.3885 |               0.9315 [ 0.9315] |               1.7356 [ 0.7243] |               0.4987 [ 0.4987] |               0.6985 [ 0.2915] | 0.93148
+
+variant 1 reproduces compute_ratio: max |difference| = 3.3e-16
+
+range of the bracket 1 + (...)/(E E') over the whole energy grid (the normal-state value is 2):
+   repo / paper:  |xi||xi'|, +eta D^2            : [+1.4966, 2.0000]
+   signed xi xi', +eta D^2                       : [+1.1040, 2.0000]
+   |xi||xi'|, -eta D^2                           : [+0.3924, 1.9965]
+   signed xi xi', -eta D^2   (correct bracket)   : [+0.0000, 1.9965]

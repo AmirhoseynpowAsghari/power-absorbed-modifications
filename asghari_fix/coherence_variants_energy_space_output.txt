@@ -1,0 +1,19 @@
+V_SO = 0.4082, hbar*omega = 0.7, eta = +1, U = 95 (self-consistent Delta0(T), Delta_s(T), mu(T)); physical normal state W_N (mu_N(T)); pair-breaking onset at T/Tc = 0.91
+
+sum rule at Delta = 0 (T/Tc = 0.7):   (S_sc + S_pair) / S_N  with  S_N = physical normal-state absorption
+   signed xi xi'  : scattering 0.3524 + pair creation 0.6492 = 1.0016
+   |xi||xi'|      : scattering 0.6446 + pair creation 0.0000 = 0.6446
+
+W/W_N  (physical W_N):
+ T/Tc  2Emin | (1) signed xi xi', -eta D D'   COR |         (2) |xi||xi'|,   -eta D D' |       (3) signed xi xi', +eta D D' | (4) |xi||xi'|,   +eta D D'   paper
+ 0.30  1.372 |                            0.00173 |                            0.00190 |                            0.00240 |                            0.00258
+ 0.50  1.322 |                            0.03129 |                            0.03587 |                            0.04219 |                            0.04676
+ 0.70  1.156 |                            0.12905 |                            0.15419 |                            0.16872 |                            0.19387
+ 0.90  0.746 |                            0.32256 |                            0.42000 |                            0.39275 |                            0.49020
+ 0.96  0.487 |                            1.19537 |                            1.17944 |                            0.72778 |                            0.62998
+variant (1) reproduces qp_absorption.absorption to 1e-12
+
+correct formula, eta = +1:  max over T < Tc of W/W_N, and the temperature where the pair channel opens (2 Emin(T) = hbar*omega)
+   hbar*omega = 0.70: max W/W_N = 1.402 at T/Tc = 0.9828;   below the onset (T/Tc < 0.9137) max = 0.340
+   hbar*omega = 0.20: max W/W_N = 1.016 at T/Tc = 0.9939;   below the onset (T/Tc < 0.9939) max = 0.766
+   hbar*omega = 0.05: max W/W_N = 0.941 at T/Tc = 0.9995;   below the onset (T/Tc < nan) max = 0.941

@@ -1,0 +1,10 @@
+state: V_SO = 0.4082, T/Tc = 0.7:  Delta0 = 0.23154, Delta_s = 0.90678, mu = 3.63583
+
+1. spectrum: the complex gap Delta_ks has phases spread over [-3.12, +3.12] rad, yet
+   max |E_ks(complex Delta) - E(eps_ks)| over 28800 states = 8.9e-16   (E depends on (k,s) only through eps_ks)
+
+2. |M|^2 for 2971 random pairs (k,s) -> (k',s') with non-negligible weight (exact spin-space BdG, scalar vertex):
+   (a) signed real Dbar        : max relative error 1.0e-13   median 8.2e-16
+   (b) |Dbar|, sign dropped    : max relative error 4.4e-01   median 2.8e-15
+   (c) complex phase kept       : max relative error 3.8e+02   median 4.2e-03
+   share of pairs with Dbar*Dbar' < 0 (across the node): 0.42;  error of (b) on those pairs: median 0.02

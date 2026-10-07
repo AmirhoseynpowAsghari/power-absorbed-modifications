@@ -1,0 +1,71 @@
+
+[A] normal-state limit (Rashba DOS, V_SO = 0.4082):  Delta = 0  ->  (S_sc + S_pair) / S_N  must be 1
+   T=0.15 omega=0.3 eta=+1:  S_sc/S_N=0.5677  S_pair/S_N=0.4319  sum=0.99963
+   T=0.15 omega=0.3 eta=-1:  S_sc/S_N=0.5677  S_pair/S_N=0.4319  sum=0.99963
+   T=0.15 omega=0.7 eta=+1:  S_sc/S_N=0.1851  S_pair/S_N=0.8142  sum=0.99928
+   T=0.15 omega=0.7 eta=-1:  S_sc/S_N=0.1851  S_pair/S_N=0.8142  sum=0.99928
+   T=0.15 omega=1.5 eta=+1:  S_sc/S_N=0.1660  S_pair/S_N=0.8366  sum=1.00257
+   T=0.15 omega=1.5 eta=-1:  S_sc/S_N=0.1660  S_pair/S_N=0.8366  sum=1.00257
+   T=0.40 omega=0.3 eta=+1:  S_sc/S_N=0.7870  S_pair/S_N=0.2128  sum=0.99983
+   T=0.40 omega=0.3 eta=-1:  S_sc/S_N=0.7870  S_pair/S_N=0.2128  sum=0.99983
+   T=0.40 omega=0.7 eta=+1:  S_sc/S_N=0.5225  S_pair/S_N=0.4770  sum=0.99956
+   T=0.40 omega=0.7 eta=-1:  S_sc/S_N=0.5225  S_pair/S_N=0.4770  sum=0.99956
+   T=0.40 omega=1.5 eta=+1:  S_sc/S_N=0.4780  S_pair/S_N=0.5238  sum=1.00184
+   T=0.40 omega=1.5 eta=-1:  S_sc/S_N=0.4780  S_pair/S_N=0.5238  sum=1.00184
+   T=0.90 omega=0.3 eta=+1:  S_sc/S_N=1.0016  S_pair/S_N=0.0000  sum=1.00164
+   T=0.90 omega=0.3 eta=-1:  S_sc/S_N=1.0016  S_pair/S_N=0.0000  sum=1.00164
+   T=0.90 omega=0.7 eta=+1:  S_sc/S_N=1.0015  S_pair/S_N=-0.0000  sum=1.00146
+   T=0.90 omega=0.7 eta=-1:  S_sc/S_N=1.0015  S_pair/S_N=-0.0000  sum=1.00146
+   T=0.90 omega=1.5 eta=+1:  S_sc/S_N=1.0009  S_pair/S_N=0.0000  sum=1.00092
+   T=0.90 omega=1.5 eta=-1:  S_sc/S_N=1.0009  S_pair/S_N=0.0000  sum=1.00092
+   worst |sum - 1| = 2.6e-03
+
+[B] BCS limit: flat DOS, constant gap Delta, mu = 0, omega -> 0, eta = +1:  W_s/W_n  vs  2 f(Delta)
+   Delta=0.5 T=0.20:  computed 0.15170   2f(Delta) = 0.15172   rel. diff = 8.1e-05
+   Delta=0.5 T=0.35:  computed 0.38663   2f(Delta) = 0.38664   rel. diff = 2.7e-05
+   Delta=0.5 T=0.60:  computed 0.60588   2f(Delta) = 0.60588   rel. diff = 1.0e-05
+   Delta=1.0 T=0.50:  computed 0.23840   2f(Delta) = 0.23841   rel. diff = 1.5e-05
+   Delta=0.3 T=0.30:  computed 0.53786   2f(Delta) = 0.53788   rel. diff = 3.7e-05
+
+[C] limits for the user's parameters (branch master: U = 95, dt = 4.5, n = 1.885, V_SO = 0.4082, omega = 0.7):  eta = +1
+   Tc = 0.3736
+   T/Tc=0.027  Emin=0.6876  2Emin=1.375  mu=3.6288 muN=3.5806  W/W_N=2.781e-31  (pair part 0.00e+00)
+   T/Tc=0.050  Emin=0.6876  2Emin=1.375  mu=3.6288 muN=3.5807  W/W_N=2.887e-17  (pair part 0.00e+00)
+   T/Tc=0.150  Emin=0.6876  2Emin=1.375  mu=3.6288 muN=3.5813  W/W_N=2.377e-06  (pair part 0.00e+00)
+   T/Tc=0.300  Emin=0.6860  2Emin=1.372  mu=3.6288 muN=3.5828  W/W_N=1.731e-03  (pair part 0.00e+00)
+   T/Tc=0.500  Emin=0.6611  2Emin=1.322  mu=3.6302 muN=3.5882  W/W_N=3.129e-02  (pair part 0.00e+00)
+   T/Tc=0.700  Emin=0.5780  2Emin=1.156  mu=3.6358 muN=3.6045  W/W_N=1.290e-01  (pair part 0.00e+00)
+   T/Tc=0.850  Emin=0.4445  2Emin=0.889  mu=3.6439 muN=3.6259  W/W_N=2.628e-01  (pair part 0.00e+00)
+   T/Tc=0.900  Emin=0.3729  2Emin=0.746  mu=3.6473 muN=3.6348  W/W_N=3.226e-01  (pair part 0.00e+00)
+   T/Tc=0.930  Emin=0.3170  2Emin=0.634  mu=3.6495 muN=3.6406  W/W_N=1.250e+00  (pair part 8.86e-01)
+   T/Tc=0.950  Emin=0.2708  2Emin=0.542  mu=3.6511 muN=3.6446  W/W_N=1.209e+00  (pair part 8.14e-01)
+   T/Tc=0.970  Emin=0.2120  2Emin=0.424  mu=3.6527 muN=3.6487  W/W_N=1.219e+00  (pair part 7.90e-01)
+   T/Tc=0.990  Emin=0.1237  2Emin=0.247  mu=3.6544 muN=3.6530  W/W_N=1.120e+00  (pair part 6.50e-01)
+
+[D2] flat DOS, energy-dependent gap (b != 0), pair channel open: analytic branches/Jacobians vs a 2-D energy-grid sum
+   T=0.30 omega=2.2 eta=+1: analytic 1.1437 (pair 1.1196)   energy-grid brute force 1.1432 (pair 1.1191)
+   T=0.30 omega=2.2 eta=-1: analytic 0.2695 (pair 0.2325)   energy-grid brute force 0.2694 (pair 0.2323)
+   T=0.45 omega=2.6 eta=+1: analytic 1.0560 (pair 0.9867)   energy-grid brute force 1.0565 (pair 0.9871)
+   T=0.45 omega=2.6 eta=-1: analytic 0.4489 (pair 0.3504)   energy-grid brute force 0.4491 (pair 0.3506)
+   T=0.20 omega=3.0 eta=+1: analytic 1.0822 (pair 1.0789)   energy-grid brute force 1.0819 (pair 1.0787)
+   T=0.20 omega=3.0 eta=-1: analytic 0.5053 (pair 0.5006)   energy-grid brute force 0.5052 (pair 0.5005)
+   worst relative difference = 4.6e-04
+
+[D] brute-force k-space all-pairs sum (with the helicity overlap) against the energy-space formula
+   user regime, T/Tc=0.7, omega=0.7 (scattering only), eta=+1
+        W/W_N energy-space = 0.1290   brute force with overlap = 0.1191   without overlap = 0.1191   (pair part: 0.0000 vs 0.0000)
+   user regime, T/Tc=0.7, omega=0.7 (scattering only), eta=-1
+        W/W_N energy-space = 0.1687   brute force with overlap = 0.1552   without overlap = 0.1552   (pair part: 0.0000 vs 0.0000)
+   user regime, T/Tc=0.96, omega=0.7 (pair channel just open), eta=+1
+        W/W_N energy-space = 1.1954   brute force with overlap = 1.1752   without overlap = 1.1752   (pair part: 0.7845 vs 0.7736)
+   user regime, T/Tc=0.96, omega=0.7 (pair channel just open), eta=-1
+        W/W_N energy-space = 0.7278   brute force with overlap = 0.7184   without overlap = 0.7184   (pair part: 0.2586 vs 0.2567)
+   HHM-like state (U=90), T=0.30, omega=2.2 (pair channel open), eta=+1
+        W/W_N energy-space = 2.2589   brute force with overlap = 2.4052   without overlap = 2.4052   (pair part: 2.1704 vs 2.3157)
+   HHM-like state (U=90), T=0.30, omega=2.2 (pair channel open), eta=-1
+        W/W_N energy-space = 0.5646   brute force with overlap = 0.5765   without overlap = 0.5765   (pair part: 0.4799 vs 0.4909)
+
+SUMMARY:  A worst |sum-1| = 2.6e-03   B worst rel. diff = 8.1e-05   D2 worst rel. diff = 4.6e-04
+          D (lattice), user regime, scattering only: max |R_es - R_bf| = 0.0135
+          D (lattice), user regime, pair channel just open: max |R_es - R_bf| = 0.0202 (relative 0.017)
+          D (HHM-like state, omega - 2 Emin = 0.4): difference 0.146 / 0.012 is regularisation-limited (sigma_smooth, Gaussian width) -- see docstring

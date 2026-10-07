@@ -1,0 +1,14 @@
+(1) energy-space integral (branches, Jacobian)  versus  direct 2-D sum with a Gaussian delta function, same repository DOS table, T/Tc = 0.7 and 0.9
+   V_SO = 0.4082, T/Tc = 0.7, (a) signed xi xi'   : energy space 2.044917e-04   2-D sum (width 0.03 / 0.015): 2.044455e-04 / 2.044799e-04   rel.diff 5.8e-05
+   V_SO = 0.4082, T/Tc = 0.7, (b) |xi||xi'|       : energy space 2.455817e-04   2-D sum (width 0.03 / 0.015): 2.455139e-04 / 2.455543e-04   rel.diff 1.1e-04
+   V_SO = 0.4082, T/Tc = 0.7, (c) paper's final   : energy space 3.094982e-04   2-D sum (width 0.03 / 0.015): 3.094383e-04 / 3.094720e-04   rel.diff 8.5e-05
+   V_SO = 0.4082, T/Tc = 0.9, (a) signed xi xi'   : energy space 4.827684e-04   2-D sum (width 0.03 / 0.015): 4.826443e-04 / 4.827370e-04   rel.diff 6.5e-05
+   V_SO = 0.4082, T/Tc = 0.9, (b) |xi||xi'|       : energy space 6.347636e-04   2-D sum (width 0.03 / 0.015): 6.345868e-04 / 6.347086e-04   rel.diff 8.7e-05
+   V_SO = 0.4082, T/Tc = 0.9, (c) paper's final   : energy space 7.412816e-04   2-D sum (width 0.03 / 0.015): 7.410971e-04 / 7.412228e-04   rel.diff 7.9e-05
+   V_SO = 0.0, T/Tc = 0.8, (a) signed xi xi'   : energy space 3.020560e-04   2-D sum (width 0.03 / 0.015): 3.019896e-04 / 3.020369e-04   rel.diff 6.3e-05
+   V_SO = 0.0, T/Tc = 0.8, (b) |xi||xi'|       : energy space 3.935204e-04   2-D sum (width 0.03 / 0.015): 3.933872e-04 / 3.934468e-04   rel.diff 1.9e-04
+   V_SO = 0.0, T/Tc = 0.8, (c) paper's final   : energy space 4.623646e-04   2-D sum (width 0.03 / 0.015): 4.622507e-04 / 4.622943e-04   rel.diff 1.5e-04
+
+(2) ratio to the formula's own Delta = 0 limit, variant (a), V_SO = 0 and 0.4082, T -> Tc
+   V_SO = 0.0: 0.99: 0.9778 (W/W_N = 0.3790)  0.995: 0.9988 (W/W_N = 0.3885)  0.999: 1.0178 (W/W_N = 0.3970)  0.9995: 1.0204 (W/W_N = 0.3982)  0.9999: 1.0211 (W/W_N = 0.3986)  0.99999: 1.0136 (W/W_N = 0.3957)   limit W/W_N = 0.3904
+   V_SO = 0.4082: 0.99: 0.9543 (W/W_N = 0.4665)  0.995: 0.9755 (W/W_N = 0.4780)  0.999: 0.9951 (W/W_N = 0.4885)  0.9995: 0.9978 (W/W_N = 0.4900)  0.9999: 0.9999 (W/W_N = 0.4911)  0.99999: 1.0000 (W/W_N = 0.4912)   limit W/W_N = 0.4912
